@@ -26,11 +26,11 @@ const init = async () => {
 };
 
 const saveUser = (userObj) => {
-  fs.readFile("db.json", function (err, content) {
+  fs.readFile("./backend/db.json", function (err, content) {
     if (err) throw err;
     var parseJson = JSON.parse(content);
     parseJson.users.push(userObj);
-    fs.writeFile("db.json", JSON.stringify(parseJson), function (err) {
+    fs.writeFile("./backend/db.json", JSON.stringify(parseJson), function (err) {
       if (err) throw err;
     });
   });
@@ -38,7 +38,7 @@ const saveUser = (userObj) => {
 
 const ifUserExistsUpdateDate = (chatId) => {
   let updatedUser = false; let newData;
-  let data = fs.readFileSync("db.json");
+  let data = fs.readFileSync("./backend/db.json");
   data = JSON.parse(data);
   newData = data;
   data.users.forEach((user, idx) => {
@@ -47,7 +47,7 @@ const ifUserExistsUpdateDate = (chatId) => {
       updatedUser = true;
     }
   });
-  fs.writeFileSync("db.json", JSON.stringify(newData));
+  fs.writeFileSync("./backend/db.json", JSON.stringify(newData));
   if(updatedUser) {
     console.log(updatedUser);
     return true;
