@@ -18,7 +18,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
+    "start": "nodemon -x 'node index.js || (sleep 10; touch index.js)'",
     "dev": "nodemon -x 'node index.js || (sleep 10; touch index.js)'"
   },
   "author": "David Pichsenmeister (dpiTech)",
