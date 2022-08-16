@@ -149,7 +149,7 @@ app.post(URI, jsonParser, async (req, res) => {
     userObjectForTable.username = message.data.result.chat.first_name;
     userObjectForTable.chatId = message.data.result.chat.id;
   }
-  return res.send();
+  return res.send("success");
 });
 
 app.listen(process.env.PORT || 5050, async () => {
