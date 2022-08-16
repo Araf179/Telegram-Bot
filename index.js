@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-var cors = require("cors");
+const path = require('path');
 const axios = require("axios");
 const bodyParser = require("body-parser");
 const Stripe = require("stripe");
