@@ -118,6 +118,10 @@ app.post(
   }
 );
 
+app.get('/', async (req, res) => {
+  res.send("Hello world");
+})
+
 app.post(URI, jsonParser, async (req, res) => {
   if (
     req.body.message?.chat?.id &&
