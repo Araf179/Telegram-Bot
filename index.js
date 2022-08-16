@@ -163,8 +163,8 @@ app.post(URI, jsonParser, async (req, res) => {
   return res.send("success");
 });
 
-app.listen(process.env.PORT || 5050, async () => {
-  console.log("🚀 app running on port", process.env.PORT || 5050);
+app.listen(process.env.PORT, async () => {
+  console.log("🚀 app running on port", process.env.PORT);
   await init();
   const interval = setInterval(function () {
     fs.readFile(path.resolve(__dirname, 'data.json'), function (err, content) {
