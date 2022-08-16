@@ -78,6 +78,17 @@ const sendPaymentWarningMessage = async (chatId) => {
   });
 };
 
+
+app.get(
+  "/db",
+  async (request, response) => {
+    let data = fs.readFileSync("./backend/db.json");
+    data = JSON.parse(data);
+    response.send(data);
+  }
+);
+
+
 app.post(
   "/webhook",
   express.raw({ type: "application/json" }),
@@ -119,7 +130,7 @@ app.post(
 );
 
 app.get('/', async (req, res) => {
-  res.send(URI);
+  res.send("success");
 })
 
 app.post(URI, jsonParser, async (req, res) => {
