@@ -26,11 +26,11 @@ const init = async () => {
 };
 
 const saveUser = (userObj) => {
-  fs.readFile("./backend/data.json", function (err, content) {
+  fs.readFile("data.json", function (err, content) {
     if (err) throw err;
     var parseJson = JSON.parse(content);
     parseJson.users.push(userObj);
-    fs.writeFile("./backend/data.json", JSON.stringify(parseJson), function (err) {
+    fs.writeFile("data.json", JSON.stringify(parseJson), function (err) {
       if (err) throw err;
     });
   });
@@ -38,7 +38,7 @@ const saveUser = (userObj) => {
 
 const ifUserExistsUpdateDate = (chatId) => {
   let updatedUser = false; let newData;
-  let data = fs.readFileSync("./backend/data.json");
+  let data = fs.readFileSync("data.json");
   data = JSON.parse(data);
   newData = data;
   data.users.forEach((user, idx) => {
@@ -47,7 +47,7 @@ const ifUserExistsUpdateDate = (chatId) => {
       updatedUser = true;
     }
   });
-  fs.writeFileSync("./backend/data.json", JSON.stringify(newData));
+  fs.writeFileSync("data.json", JSON.stringify(newData));
   if(updatedUser) {
     console.log(updatedUser);
     return true;
@@ -82,7 +82,7 @@ const sendPaymentWarningMessage = async (chatId) => {
 app.get(
   "/db",
   async (request, response) => {
-    let data = fs.readFileSync("./backend/data.json");
+    let data = fs.readFileSync("data.json");
     data = JSON.parse(data);
     response.send(data);
   }
@@ -167,7 +167,7 @@ app.listen(process.env.PORT || 5050, async () => {
   console.log("🚀 app running on port", process.env.PORT || 5050);
   await init();
   const interval = setInterval(function () {
-    fs.readFile("./backend/data.json", function (err, content) {
+    fs.readFile("data.json", function (err, content) {
       if (err) throw err;
       var parseJson = JSON.parse(content);
       parseJson.users.forEach((value, index) => {
