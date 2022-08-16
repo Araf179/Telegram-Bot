@@ -119,7 +119,7 @@ app.post(
 );
 
 app.get('/', async (req, res) => {
-  res.send("Hello world");
+  res.send(URI);
 })
 
 app.post(URI, jsonParser, async (req, res) => {
