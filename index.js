@@ -36,9 +36,9 @@ const saveUser = (userObj) => {
   });
 };
 
-const ifUserExistsUpdateDate = (chatId) => {
+const ifUserExistsUpdateDate = async (chatId) => {
   let updatedUser = false; let newData;
-  let data = fs.readFileSync(path.resolve(__dirname, 'data.json'));
+  let data = await fs.readFileSync(path.resolve(__dirname, 'data.json'));
   data = JSON.parse(data);
   newData = data;
   data.users.forEach((user, idx) => {
@@ -47,7 +47,7 @@ const ifUserExistsUpdateDate = (chatId) => {
       updatedUser = true;
     }
   });
-  fs.writeFileSync(path.resolve(__dirname, 'data.json'), JSON.stringify(newData));
+  await fs.writeFileSync(path.resolve(__dirname, 'data.json'), JSON.stringify(newData));
   if(updatedUser) {
     console.log(updatedUser);
     return true;
@@ -82,7 +82,7 @@ const sendPaymentWarningMessage = async (chatId) => {
 app.get(
   "/db",
   async (request, response) => {
-    let data = fs.readFileSync(path.resolve(__dirname, 'data.json'));
+    let data = await fs.readFileSync(path.resolve(__dirname, 'data.json'));
     data = JSON.parse(data);
     response.send(data);
   }
